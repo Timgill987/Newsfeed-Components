@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'How to catch Mew',
+    date: 'Jan 1st, 2019',
+    firstParagraph: 'Buy a pokeball plus from gamestop',
+    secondParagraph: 'sync it with your Nintendo Switch',
+    thirdParagraph: 'select mysterygift in your pause menu',
   }
 ];
 
@@ -112,3 +119,49 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+
+function createArticle(article){
+
+  
+  
+  const artContainer = document.createElement('div');
+  artContainer.classList.add('article');
+
+  const artTitle = document.createElement('h2');
+    artTitle.textContent = article.title;
+     artContainer.appendChild(artTitle);
+
+  const artDate = document.createElement('p');
+    artDate.textContent = article.date;
+      artContainer.classList.add('date');
+        artContainer.appendChild(artDate);
+
+  const artText1 = document.createElement('p');
+    artText1.textContent = article.firstParagraph;
+     artContainer.appendChild(artText1);
+
+  const artText2 = document.createElement('p');
+    artText2.textContent = article.secondParagraph;
+     artContainer.appendChild(artText2);
+
+  const artText3 = document.createElement('p');
+    artText3.textContent = article.thirdParagraph;
+     artContainer.appendChild(artText3);
+
+  const artBtn = document.createElement('span');
+    artBtn.classList.add('expandButton');
+    artContainer.appendChild(artBtn);
+    artBtn.textContent = 'EXPAND';
+    
+    artBtn.addEventListener('click', (event) => {
+      console.log('opened', event.target);
+      artContainer.classList.toggle('article-open');
+    })
+
+     return artContainer;
+}
+
+data.map(newArt => {
+  document.querySelector(".articles").appendChild(createArticle(newArt));
+});
